@@ -1,4 +1,20 @@
 import React, { Component } from 'react';
+import styled from 'styled-components'
+
+const Item = styled.div`
+  background: #5C5E6D;
+  margin: 5px;
+  padding: 1px 10px 1px 10px;
+  border-radius: 10px;
+  color: ${props => props.done ? "red": "auto" };
+  text-decoration: ${props => props.done ? "line-through": "auto"};
+`
+/* zapis 
+ className = {this.state.done ? 'doneToDo' : ''}
+ zastąpiony: 
+ color: ${props => props.done ? "red": "auto" };
+ i w divie w którym była ta klasa przekazujemy props done
+ */
 
 class ToDoItem extends Component {
     static defaultProps = {
@@ -15,12 +31,13 @@ class ToDoItem extends Component {
     
     render(){
       const { text } = this.props
-      return(<div onClick={this.toggleDone} className = {this.state.done ? 'doneToDo' : ''}>
+      return(
+      <Item onClick={this.toggleDone} done={this.state.done}>
         <p>
          {/*{this.props.task} */}
           {text}
         </p>
-      </div>)
+      </Item>)
     }
   }
 
